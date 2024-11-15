@@ -1,7 +1,7 @@
 import {
   Route,
   RouterProvider,
-  createBrowserRouter,
+  createHashRouter,
   createRoutesFromElements,
 } from "react-router-dom";
 import MainLayout from "./Layout/MainLayout";
@@ -19,7 +19,7 @@ const App = () => {
       <Route path="/*" element={<NotFoundPage />} />
     </Route>
   );
-  const route = createBrowserRouter(routes);
+  const route = createHashRouter(routes);
   return <RouterProvider router={route} />;
 };
 
