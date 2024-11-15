@@ -44,7 +44,7 @@ const CardMovieDetails = ({ movie }) => {
           ) : null}
 
           <p className="text-justify">{movie.overview}</p>
-          <div className="flex flex-col gap-5 my-5 md:flex-row">
+          <div className="flex flex-col w-full justify-center items-center gap-5 my-5 md:flex-row md:justify-start md:items-center">
             <Link
               target="_blank"
               rel="external"
