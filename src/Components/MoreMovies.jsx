@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from "react";
 import api from "../services/api";
+// Importe do framer-motion
+import { motion, AnimatePresence } from "framer-motion";
+
 
 import Spinner from "./Spinner";
 import CardMoreMovies from "./CardMoreMovies";
@@ -35,16 +38,31 @@ const MoreMovies = () => {
             More Titles
             <PaginationsMoreMovies
               nextSlice={nextSlice}
-              previousSlice={previousSlice}
+              previousSlice={previousSlice + 1}
               setNextSlice={setNextSlice}
               setPreviousSlice={setPreviousSlice}
             />
           </h1>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6">
-            {movies.map((movie) => {
+          {/* <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6"> */}
+            {/* {movies.map((movie) => {
               return <CardMoreMovies movie={movie} key={movie.id} />;
-            })}
-          </div>
+            })} */}
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={`${previousSlice}-${nextSlice}`} // Para forçar o re-render na troca de página
+                initial={{ x: 300, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                exit={{ x: -300, opacity: 0 }}
+                transition={{ duration: 0.5 }}
+                className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6"
+              >
+                {movies.map((movie) => (
+                  <CardMoreMovies movie={movie} key={movie.id} />
+                ))}
+              </motion.div>
+            </AnimatePresence>
+
+          {/* </div> */}
         </>
       )}
     </>
